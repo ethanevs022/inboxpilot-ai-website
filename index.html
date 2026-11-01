@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="InboxPilot AI helps small businesses organise enquiries, respond faster and keep follow-ups from slipping through the cracks.">
+  <meta name="theme-color" content="#08111f">
+  <title>InboxPilot AI — Never lose a lead in your inbox</title>
+  <style>
+    :root {
+      --bg: #08111f;
+      --panel: #101d30;
+      --panel2: #14243a;
+      --text: #f4f7fb;
+      --muted: #a8b5c8;
+      --blue: #65a8ff;
+      --cyan: #65e0e8;
+      --line: rgba(180,205,235,.15);
+      --max: 1120px;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0; background: radial-gradient(circle at 80% 0%, #132b4b 0, transparent 34%), var(--bg);
+      color: var(--text); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; text-decoration: none; }
+    .wrap { width: min(var(--max), calc(100% - 40px)); margin: 0 auto; }
+    header { position: sticky; top: 0; z-index: 10; backdrop-filter: blur(16px); background: rgba(8,17,31,.82); border-bottom: 1px solid var(--line); }
+    .nav { min-height: 76px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .brand { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:-.04em; font-size:1.12rem; }
+    .logo { width:36px; height:36px; display:grid; place-items:center; border-radius:11px; color:#071321; font-weight:900; background:linear-gradient(135deg,var(--cyan),var(--blue)); box-shadow:0 8px 28px #65a8ff33; }
+    .brand span:last-child { color:var(--blue); }
+    nav { display:flex; align-items:center; gap:28px; color:var(--muted); font-size:.92rem; }
+    nav a:hover, .text-link:hover { color:var(--text); }
+    .btn { display:inline-flex; justify-content:center; align-items:center; gap:8px; border:0; border-radius:12px; padding:13px 19px; font-weight:750; cursor:pointer; transition:transform .18s, filter .18s; }
+    .btn:hover { transform:translateY(-2px); filter:brightness(1.08); }
+    .primary { color:#061321; background:linear-gradient(100deg,var(--cyan),var(--blue)); box-shadow:0 10px 30px #65a8ff24; }
+    .secondary { color:var(--text); border:1px solid var(--line); background:rgba(255,255,255,.04); }
+    .hero { padding:92px 0 76px; display:grid; grid-template-columns:1.08fr .92fr; align-items:center; gap:54px; }
+    .eyebrow { display:inline-flex; gap:9px; align-items:center; color:#b8d8ff; background:#65a8ff14; border:1px solid #65a8ff35; border-radius:99px; padding:7px 12px; font-size:.8rem; font-weight:700; }
+    .dot { width:7px; height:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 12px var(--cyan); }
+    h1 { font-size:clamp(2.7rem,6vw,4.8rem); line-height:1.04; letter-spacing:-.065em; margin:22px 0; max-width:720px; }
+    .gradient { background:linear-gradient(100deg,#fff 10%,#9bcaff 65%,#72e5e9); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    .lead { color:var(--muted); font-size:1.12rem; max-width:590px; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin:29px 0 20px; }
+    .micro { color:#8394aa; font-size:.82rem; }
+    .mockup { border:1px solid #9ac8ff2b; border-radius:22px; padding:18px; background:linear-gradient(145deg,#14263e,#0d192a); box-shadow:0 25px 90px #0008; transform:rotate(1deg); }
+    .mock-top { display:flex; justify-content:space-between; align-items:center; padding:4px 3px 16px; color:#b8c8dc; font-size:.82rem; }
+    .status { color:#7ce5c2; background:#7ce5c21a; padding:5px 9px; border-radius:30px; font-size:.72rem; }
+    .inbox-card { padding:15px; border:1px solid var(--line); border-radius:14px; background:#0a1627; margin:9px 0; }
+    .inbox-head { display:flex; justify-content:space-between; gap:12px; font-size:.9rem; font-weight:750; }
+    .inbox-card p { margin:7px 0 0; color:#91a3ba; font-size:.8rem; }
+    .tag { font-size:.68rem; color:#8fdde4; background:#65e0e814; padding:4px 7px; border-radius:6px; white-space:nowrap; }
+    .mini-stats { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:12px; }
+    .stat { background:#162941; border:1px solid var(--line); border-radius:12px; padding:13px; }
+    .stat strong { display:block; font-size:1.35rem; }
+    .stat small { color:#91a3ba; }
+    section { padding:76px 0; }
+    .section-head { max-width:660px; margin-bottom:34px; }
+    .kicker { color:var(--cyan); text-transform:uppercase; letter-spacing:.13em; font-size:.72rem; font-weight:800; }
+    h2 { font-size:clamp(2rem,4vw,3rem); letter-spacing:-.05em; line-height:1.1; margin:12px 0; }
+    .section-head p, .muted { color:var(--muted); }
+    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .feature, .step, .price-card { background:linear-gradient(145deg,#122139,#0d192a); border:1px solid var(--line); border-radius:18px; padding:24px; }
+    .icon { width:42px; height:42px; display:grid; place-items:center; border-radius:12px; background:#65a8ff18; color:var(--cyan); font-size:1.2rem; margin-bottom:18px; }
+    h3 { margin:0 0 8px; letter-spacing:-.025em; }
+    .feature p, .step p { margin:0; color:var(--muted); font-size:.94rem; }
+    .band { background:linear-gradient(110deg,#10243d,#102b40); border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; counter-reset:steps; }
+    .step-num { color:var(--blue); font-size:.8rem; font-weight:850; letter-spacing:.1em; margin-bottom:15px; }
+    .pricing { display:grid; grid-template-columns:1fr 1fr; gap:18px; max-width:850px; }
+    .price-card.featured { border-color:#65a8ff70; box-shadow:0 15px 55px #65a8ff12; }
+    .price { font-size:2.7rem; font-weight:850; letter-spacing:-.06em; margin:12px 0 0; }
+    .price small { font-size:.9rem; color:var(--muted); font-weight:500; letter-spacing:0; }
+    ul.clean { list-style:none; padding:0; margin:20px 0 25px; }
+    ul.clean li { margin:10px 0; color:#c1ccda; font-size:.92rem; }
+    ul.clean li::before { content:"✓"; color:var(--cyan); font-weight:900; margin-right:10px; }
+    .note { color:#8294aa; font-size:.78rem; }
+    .contact-grid { display:grid; grid-template-columns:.8fr 1.2fr; gap:34px; align-items:start; }
+    form { display:grid; gap:13px; }
+    label { display:grid; gap:6px; color:#c8d4e3; font-size:.86rem; font-weight:650; }
+    input, textarea, select { width:100%; border:1px solid var(--line); background:#0b1728; color:var(--text); border-radius:10px; padding:13px 14px; font:inherit; outline:none; }
+    input:focus, textarea:focus, select:focus { border-color:#65a8ff; box-shadow:0 0 0 3px #65a8ff18; }
+    textarea { min-height:120px; resize:vertical; }
+    footer { border-top:1px solid var(--line); padding:27px 0; color:#8394aa; font-size:.82rem; }
+    .footer-inner { display:flex; justify-content:space-between; gap:15px; flex-wrap:wrap; }
+    .mobile-menu { display:none; }
+    @media (max-width:800px) {
+      .hero { grid-template-columns:1fr; padding-top:66px; gap:34px; }
+      .mockup { max-width:600px; transform:none; }
+      .grid3, .steps { grid-template-columns:1fr; }
+      .contact-grid { grid-template-columns:1fr; }
+      nav { gap:14px; font-size:.82rem; }
+    }
+    @media (max-width:560px) {
+      .wrap { width:min(100% - 30px,var(--max)); }
+      .nav { min-height:66px; }
+      nav a:not(.btn) { display:none; }
+      nav .btn { padding:10px 12px; font-size:.82rem; }
+      section { padding:58px 0; }
+      .pricing { grid-template-columns:1fr; }
+      .hero { padding:58px 0; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="InboxPilot AI home"><span class="logo">IP</span><span>InboxPilot <span>AI</span></span></a>
+      <nav aria-label="Main navigation">
+        <a href="#services">Services</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a class="btn primary" href="#contact">Get started <span aria-hidden="true">→</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero" id="home">
+      <div>
+        <div class="eyebrow"><span class="dot"></span> Simple enquiry systems for growing businesses</div>
+        <h1>Never lose a lead in your <span class="gradient">inbox.</span></h1>
+        <p class="lead">InboxPilot AI helps small businesses stay on top of customer enquiries, organise incoming leads and follow up consistently — without adding another complicated system to the day.</p>
+        <div class="actions">
+          <a class="btn primary" href="#contact">Talk about your inbox <span aria-hidden="true">→</span></a>
+          <a class="btn secondary" href="#how">See how it works</a>
+        </div>
+        <div class="micro">Straightforward setup · Built around your business · Human-approved replies</div>
+      </div>
+      <div class="mockup" aria-label="Illustration of an organised business inbox">
+        <div class="mock-top"><strong>INBOXPILOT / LEAD DESK</strong><span class="status">● Organised</span></div>
+        <div class="inbox-card">
+          <div class="inbox-head"><span>Website enquiry — New customer</span><span class="tag">NEW LEAD</span></div>
+          <p>“Hi, could I get a quote for a regular clean?”</p>
+        </div>
+        <div class="inbox-card">
+          <div class="inbox-head"><span>Suggested reply ready</span><span class="tag">DRAFT</span></div>
+          <p>A clear response prepared for you to review and send.</p>
+        </div>
+        <div class="inbox-card">
+          <div class="inbox-head"><span>Follow-up reminder</span><span class="tag">TO DO</span></div>
+          <p>Check back with the customer if they have not replied.</p>
+        </div>
+        <div class="mini-stats">
+          <div class="stat"><strong>01</strong><small>One clear lead list</small></div>
+          <div class="stat"><strong>24/7</strong><small>Enquiries can be captured anytime</small></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">What we set up</div>
+          <h2>Less inbox admin. More time for customers.</h2>
+          <p>A practical, lightweight system that makes it easier to see who has contacted you, what they need and what should happen next.</p>
+        </div>
+        <div class="grid3">
+          <article class="feature"><div class="icon">✉</div><h3>Enquiry capture</h3><p>Bring new customer enquiries into one organised place, with the key details easy to find.</p></article>
+          <article class="feature"><div class="icon">✧</div><h3>Reply assistance</h3><p>Use AI to prepare helpful first-draft replies and FAQ answers for you to check before sending.</p></article>
+          <article class="feature"><div class="icon">↻</div><h3>Follow-up tracking</h3><p>Keep track of conversations and reminders so promising enquiries are less likely to get forgotten.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="band" id="how">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">How it works</div>
+          <h2>Simple from day one.</h2>
+          <p>No big software rollout. We start with the way your business already handles enquiries.</p>
+        </div>
+        <div class="steps">
+          <article class="step"><div class="step-num">STEP 01</div><h3>Tell us how enquiries arrive</h3><p>We learn what customers ask, where messages come from and what information you need.</p></article>
+          <article class="step"><div class="step-num">STEP 02</div><h3>We build your simple system</h3><p>Your enquiry tracker, response templates and follow-up process are tailored to your workflow.</p></article>
+          <article class="step"><div class="step-num">STEP 03</div><h3>You stay in control</h3><p>You review suggested replies and decide what gets sent. Your customer relationships stay yours.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="kicker">Clear starting prices</div>
+          <h2>A useful system, without a huge commitment.</h2>
+          <p>Introductory packages. We’ll confirm the exact scope before any work begins.</p>
+        </div>
+        <div class="pricing">
+          <article class="price-card">
+            <div class="kicker">Starter</div><h3>Inbox organised</h3>
+            <div class="price">£99 <small>/ one-off setup</small></div>
+            <ul class="clean">
+              <li>Simple enquiry capture form</li>
+              <li>Organised lead tracker</li>
+              <li>Starter reply templates</li>
+              <li>Basic handover guide</li>
+            </ul>
+            <a class="btn secondary" href="#contact">Ask about Starter</a>
+          </article>
+          <article class="price-card featured">
+            <div class="kicker">Most complete</div><h3>Inbox + follow-up</h3>
+            <div class="price">£149 <small>/ one-off setup</small></div>
+            <ul class="clean">
+              <li>Everything in Starter</li>
+              <li>Follow-up reminder workflow</li>
+              <li>FAQ and AI reply-draft prompts</li>
+              <li>Walkthrough and handover</li>
+            </ul>
+            <a class="btn primary" href="#contact">Ask about Inbox + follow-up</a>
+          </article>
+        </div>
+        <p class="note">Prices are introductory examples and may change as the service is refined. Any third-party software costs, if ever needed, will be agreed in advance. No subscription is included.</p>
+      </div>
+    </section>
+
+    <section class="band" id="contact">
+      <div class="wrap contact-grid">
+        <div>
+          <div class="kicker">Get in touch</div>
+          <h2>Let’s make your inbox easier to manage.</h2>
+          <p class="muted">Tell us a little about your business and where customer enquiries currently get stuck. We’ll come back with a simple suggested next step.</p>
+          <p class="muted"><strong>InboxPilot AI</strong><br>Practical enquiry systems for small businesses.</p>
+          <p class="note">No obligation. We’ll agree the scope and price before starting.</p>
+        </div>
+        <div class="feature">
+          <form id="contactForm">
+            <label>Your name<input name="name" autocomplete="name" required placeholder="Your name"></label>
+            <label>Business name<input name="business" autocomplete="organization" placeholder="Your business"></label>
+            <label>Email address<input name="email" type="email" autocomplete="email" required placeholder="you@example.com"></label>
+            <label>What would you like help with?
+              <select name="interest">
+                <option>Organising customer enquiries</option>
+                <option>AI-assisted reply templates</option>
+                <option>Follow-up reminders</option>
+                <option>Not sure yet</option>
+              </select>
+            </label>
+            <label>Tell us a little more<textarea name="message" required placeholder="How do you currently receive and manage enquiries?"></textarea></label>
+            <button class="btn primary" type="submit">Prepare enquiry email →</button>
+            <p class="note" id="formMessage" aria-live="polite">This form opens your email app with your message ready to send. It does not submit data to a server.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><span>© <span id="year"></span> InboxPilot AI. All rights reserved.</span><span>Simple systems. Better follow-up.</span></div>
+  </footer>
+  <script>
+    // IMPORTANT: Replace this with the email address where you want enquiries sent.
+    const INBOXPILOT_EMAIL = "YOUR_EMAIL@example.com";
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+      const data = new FormData(event.currentTarget);
+      const subject = encodeURIComponent("New InboxPilot AI website enquiry");
+      const body = encodeURIComponent(
+        "Name: " + data.get("name") + "\\n" +
+        "Business: " + data.get("business") + "\\n" +
+        "Email: " + data.get("email") + "\\n" +
+        "Interested in: " + data.get("interest") + "\\n\\n" +
+        "Message:\\n" + data.get("message")
+      );
+      if (INBOXPILOT_EMAIL === "YOUR_EMAIL@example.com") {
+        document.getElementById("formMessage").textContent =
+          "Before publishing, open index.html and replace YOUR_EMAIL@example.com with your email address.";
+        return;
+      }
+      window.location.href = "mailto:" + INBOXPILOT_EMAIL + "?subject=" + subject + "&body=" + body;
+      document.getElementById("formMessage").textContent =
+        "Your email app should open with the enquiry ready. Check it and press Send.";
+    });
+  </script>
+</body>
+</html>
